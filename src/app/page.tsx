@@ -11,7 +11,7 @@ export default function Home() {
       </SignedOut>
 
       <SignedIn>
-        <SignUpButton>Logout.</SignUpButton>
+        <SignUpButton>Logout..</SignUpButton>
       </SignedIn>
     </div>
   );
