@@ -1,3 +1,4 @@
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { SignInButton, SignUpButton } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -25,16 +26,23 @@ const Header = () => {
           </a>
         </div>
         <div className='flex items-center gap-3'>
-          <SignInButton>
-            <Button variant={'ghost'} size={'sm'}>
-              Login
-            </Button>
-          </SignInButton>
-          <SignUpButton>
-            <Button size={'sm'}>
-              Sign Up
-            </Button>
-          </SignUpButton>
+          <SignedOut>
+            <SignInButton mode='modal'>
+              <Button variant={'ghost'} size={'sm'}>
+                Login
+              </Button>
+            </SignInButton>
+
+            <SignUpButton mode='modal'>
+              <Button size={'sm'}>
+                Sign Up
+              </Button>
+            </SignUpButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          
         </div>
       </div>
 
