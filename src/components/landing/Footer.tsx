@@ -87,7 +87,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; 2024 FixMyTeeth. Built for real people with real dental questions.</p>
+          <p>&copy; 2025 FixMyTeeth. Built for real people with real dental questions.</p>
         </div>
       </div>
     </footer>
