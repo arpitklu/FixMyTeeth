@@ -1,6 +1,7 @@
 "use client";
 
 import AdminStats from "@/components/admin/AdminStats";
+import DoctorsManagement from "@/components/admin/DoctorsManagement";
 import Navbar from "@/components/Navbar";
 import { useGetAppointments } from "@/hooks/use-appointment";
 import { useGetDoctors } from "@/hooks/use-doctors";
@@ -22,7 +23,7 @@ function AdminDashboardClient() {
         completedAppointments: appointments.filter((app) => app.status === "COMPLETED").length,
     };
 
-    if (doctorsLoading || appointmentsLoading) return <p>LOADING...</p>;
+    if (doctorsLoading || appointmentsLoading) return <LoadingUI/>;
 
     // console.log({doctors, appointments});
 
@@ -64,9 +65,9 @@ function AdminDashboardClient() {
                     completedAppointments={stats.completedAppointments}
                 />
 
-                {/* <DoctorsManagement />
+                <DoctorsManagement />
 
-                <RecentAppointments /> */}
+                {/* <RecentAppointments /> */}
               
 
             </div>
@@ -74,4 +75,20 @@ function AdminDashboardClient() {
     )
 }
 
-export default AdminDashboardClient
+export default AdminDashboardClient;
+
+function LoadingUI() {
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <div className="max-w-7xl mx-auto px-6 py-8 pt-24">
+        <div className="flex items-center justify-center h-96">
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+            <p className="text-muted-foreground">Loading dashboard...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
