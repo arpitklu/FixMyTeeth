@@ -68,8 +68,6 @@ function AdminDashboardClient() {
                 <DoctorsManagement />
 
                 {/* <RecentAppointments /> */}
-              
-
             </div>
         </div>
     )
