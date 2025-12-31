@@ -6,6 +6,9 @@ function AppointmentsPage() {
     // <div>AppointmentsPage</div>
     <>
         <Navbar />
+        <div>
+          Appointments Page
+        </div>
     </>
   )
 }
