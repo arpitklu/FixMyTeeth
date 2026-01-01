@@ -41,3 +41,27 @@ export const getNext5Days = () => {
 
   return dates;
 };
+
+export const getAvailableTimeSlots = () => {
+  return [
+    "09:00",
+    "09:30",
+    "10:00",
+    "10:30",
+    "11:00",
+    "11:30",
+    "14:00",
+    "14:30",
+    "15:00",
+    "15:30",
+    "16:00",
+    "16:30",
+  ];
+};
+
+export const APPOINTMENT_TYPES = [
+  { id: "checkup", name: "Regular Checkup", duration: "60 min", price: "$4" },
+  { id: "cleaning", name: "Teeth Cleaning", duration: "45 min", price: "$7" },
+  { id: "consultation", name: "Consultation", duration: "30 min", price: "$4" },
+  { id: "emergency", name: "Emergency Visit", duration: "30 min", price: "$6" },
+];
