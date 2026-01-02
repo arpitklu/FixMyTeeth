@@ -10,6 +10,7 @@ import Navbar from "@/components/Navbar";
 import { useBookAppointment, useUserAppointments } from "@/hooks/use-appointment";
 import { APPOINTMENT_TYPES } from "@/lib/utils";
 import { format } from "date-fns";
+import { NextResponse } from "next/server";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -74,7 +75,12 @@ function AppointmentsPage() {
 
             if (!emailResponse.ok) console.error("Failed to send confirmation email");
           } catch (error) {
-            console.error("Error sending confirmation email:", error);
+            // console.error("Error sending confirmation email:", error);
+              console.error("Email sending error:", error);
+              return NextResponse.json(
+                { error: "Internal server error" },
+                { status: 500 }
+              );
           }
 
           // show the success modal

@@ -1,7 +1,12 @@
+export const runtime = "nodejs";
+
 
 import AppointmentConfirmationEmail from "@/components/email/AppointmentConfirmationEmail";
-import resend from "@/lib/resend";
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
+// import { renderToString } from "react-dom/server";
+import { render } from "@react-email/render";
+
 
 export async function POST(request: Request) {
   try {
@@ -22,33 +27,57 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    // send the email
-    // do not use this in prod, only for testing purposes
-    const { data, error } = await resend.emails.send({
-      from: "FixMyTeeth <no-reply@resend.dev>",
-      to: [userEmail],
-      subject: "Appointment Confirmation - FixMyTeeth",
-      react: AppointmentConfirmationEmail({
+    // Set up Nodemailer transporter (replace with your SMTP config)
+    // const transporter = nodemailer.createTransporter({
+    //   service: "gmail", // or your SMTP service
+    //   auth: {
+    //     user: process.env.EMAIL_USER, // e.g., your Gmail address
+    //     pass: process.env.EMAIL_PASS, // e.g., app password for Gmail
+    //   },
+    // });
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail", // or your SMTP service
+      auth: {
+        user: process.env.EMAIL_USER, // e.g., your Gmail address
+        pass: process.env.EMAIL_PASS, // e.g., app password for Gmail
+      },
+    });
+
+    // Render the React email component to HTML
+    const emailHtml = await render(
+      AppointmentConfirmationEmail({
         doctorName,
         appointmentDate,
         appointmentTime,
         appointmentType,
         duration,
         price,
-      }),
+      })
+    );
+
+    // Send the email
+    const info = await transporter.sendMail({
+      from: "2200032819cseh@gmail.com", // replace with your from address
+      to: userEmail,
+      subject: "Appointment Confirmation - FixMyTeeth",
+      html: emailHtml,
     });
 
-    if (error) {
-      console.error("Resend error:", error);
+    if (!info.messageId) {
+      console.log("Failed to send email:", info);
       return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
     }
 
     return NextResponse.json(
-      { message: "Email sent successfully", emailId: data?.id },
+      { message: "Email sent successfully", emailId: info.messageId },
       { status: 200 }
     );
   } catch (error) {
     console.error("Email sending error:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }

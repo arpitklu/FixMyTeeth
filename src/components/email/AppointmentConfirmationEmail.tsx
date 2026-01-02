@@ -34,7 +34,7 @@ function AppointmentConfirmationEmail({
       <Preview>Your dental appointment has been confirmed</Preview>
       <Body style={main}>
         <Container style={container}>
-          <Section style={logoContainer}>
+          {/* <Section style={logoContainer}>
             <Img
               src="https://i.ibb.co.com/tRy6cC2/logo.png"
               width="50"
@@ -43,7 +43,18 @@ function AppointmentConfirmationEmail({
               style={logo}
             />
             <Text style={logoText}>FixMyTeeth</Text>
+          </Section> */}
+          <Section style={logoContainer}>
+            <Img
+              src="https://hosturl.link/k4FkHY"
+              width="40"
+              height="40"
+              alt="FixMyTeeth"
+              style={logoImage}
+            />
+            <Text style={logoText}>FixMyTeeth</Text>
           </Section>
+
 
           <Heading style={h1}>Appointment Confirmed! 🦷</Heading>
 
@@ -122,19 +133,33 @@ const logoContainer = {
   marginBottom: "32px",
 };
 
-const logo = {
-  borderRadius: "8px",
-  display: "inline",
+// const logo = {
+//   borderRadius: "8px",
+//   display: "inline",
+//   verticalAlign: "middle",
+// };
+
+const logoImage = {
+  display: "inline-block",
   verticalAlign: "middle",
 };
 
+// const logoText = {
+//   fontSize: "20px",
+//   fontWeight: "bold",
+//   color: "#2563eb",
+//   margin: "0",
+//   display: "inline",
+//   marginLeft: "12px",
+// };
+
 const logoText = {
-  fontSize: "20px",
-  fontWeight: "bold",
+  display: "inline-block",
+  verticalAlign: "middle",
+  fontSize: "22px",
+  fontWeight: "700",
   color: "#2563eb",
-  margin: "0",
-  display: "inline",
-  marginLeft: "12px",
+  marginLeft: "10px",
 };
 
 const h1 = {
