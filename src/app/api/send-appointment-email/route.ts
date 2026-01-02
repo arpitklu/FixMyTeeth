@@ -58,7 +58,7 @@ export async function POST(request: Request) {
 
     // Send the email
     const info = await transporter.sendMail({
-      from: "2200032819cseh@gmail.com", // replace with your from address
+      from: "fixmyteeth.dental@gmail.com", // replace with your from address
       to: userEmail,
       subject: "Appointment Confirmation - FixMyTeeth",
       html: emailHtml,
