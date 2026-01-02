@@ -24,7 +24,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FixMyTeeth - AI Powered Dental Assistant",
+  title: {
+    absolute: "FixMyTeeth",
+  },
   description: "Get instant Dental Advise through Voice Calls with our AI Assistant. Available 24/7.",
 };
 
