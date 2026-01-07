@@ -37,7 +37,9 @@ export async function POST(request: Request) {
     // });
 
     const transporter = nodemailer.createTransport({
-      service: "gmail", // or your SMTP service
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false, // true for 465, false for other ports
       auth: {
         user: process.env.EMAIL_USER, // e.g., your Gmail address
         pass: process.env.EMAIL_PASS, // e.g., app password for Gmail
@@ -63,6 +65,7 @@ export async function POST(request: Request) {
       subject: "Appointment Confirmation - FixMyTeeth",
       html: emailHtml,
     });
+    console.log("Reached");
 
     if (!info.messageId) {
       console.log("Failed to send email:", info);
